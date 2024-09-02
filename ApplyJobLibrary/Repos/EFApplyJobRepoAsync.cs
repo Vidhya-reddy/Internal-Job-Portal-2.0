@@ -22,7 +22,7 @@ namespace ApplyJobLibrary.Repos
             catch (Exception ex)
             {
 
-                throw new ApplyJobException(ex.InnerException.Message);
+                throw new ApplyJobException("The Employee ID you have entered is applied for the Job. Please check the ID and try again.");
             }
         }
 

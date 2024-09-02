@@ -20,7 +20,7 @@ namespace JobLibrary.Repos
             }
             catch (Exception ex)
             {
-                throw new JobException(ex.InnerException.Message);
+                throw new JobException("The Job ID you have entered is already in use. Please check the ID and try again.");
 
             }
         }

@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using SkillLibrary;
 using SkillLibrary.Models;
 using SkillLibrary.Repos;
+using System.Numerics;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace SkillWebApi.Controllers
 {
     [Route("api/[controller]")]
@@ -124,17 +127,15 @@ namespace SkillWebApi.Controllers
                 {
                     var errContent = await response1.Content.ReadAsStringAsync();
                     var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errContent);
-                    errorMessage += errorObj.GetProperty("message").GetString() + "<br/><br/>";
+                    errorMessage += "The Skill ID cannot be deleted because it is used in EmployeeSkill Table. Please check and remove any related information before trying to delete it again" + "<br/><br/>";
                 }
                 if (!response2.IsSuccessStatusCode)
                 {
                     var errContent = await response2.Content.ReadAsStringAsync();
                     var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errContent);
-                    errorMessage += errorObj.GetProperty("message").GetString();
+                    errorMessage += "The Skill ID cannot be deleted because it is used in Apply Job Table. Please check and remove any related information before trying to delete it again";
                 }
-
                 return BadRequest(errorMessage);
-
             }
         }
 
