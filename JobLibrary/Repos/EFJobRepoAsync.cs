@@ -18,7 +18,7 @@ namespace JobLibrary.Repos
                 await ctx.Jobs.AddAsync(job);
                 await ctx.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch
             {
                 throw new JobException("The Job ID you have entered is already in use. Please check the ID and try again.");
 

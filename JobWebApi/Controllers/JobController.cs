@@ -70,7 +70,7 @@ namespace JobWebApi.Controllers
             }
             catch (JobException ex)
             {
-                return BadRequest(new { Message = ex.Message });
+                return BadRequest( ex.Message );
             }
         }
 
