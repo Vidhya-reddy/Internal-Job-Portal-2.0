@@ -145,13 +145,13 @@ namespace EmployeeWebApi.Controllers
                 {
                     var errContent = await response1.Content.ReadAsStringAsync();
                     var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errContent);
-                    errorMessage += errorObj.GetProperty("message").GetString()+ "<br/><br/>";
+                    errorMessage += "The Employee ID cannot be deleted because it is used in Apply Job Table. Please check and remove any related information before trying to delete it again" + "<br/><br/>";
                 }
                 if (!response.IsSuccessStatusCode)
                 {
                     var errContent = await response.Content.ReadAsStringAsync();
                     var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errContent);
-                    errorMessage += errorObj.GetProperty("message").GetString();
+                    errorMessage += "The Employee ID cannot be deleted because it is used in Employee Skill Table. Please check and remove any related information before trying to delete it again";
 
                 }
 

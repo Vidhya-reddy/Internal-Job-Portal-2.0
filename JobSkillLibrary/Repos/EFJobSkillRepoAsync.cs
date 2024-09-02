@@ -33,7 +33,7 @@ namespace JobSkillLibrary.Repos
             }
             catch (Exception ex)
             {
-                throw new JobSkillException("Cannot Add JobSkill with Same Job Id and Skill Id");
+                throw new JobSkillException("The Job ID and Skill Id you have entered are already in use. Please check the ID's and try again.");
             }
         }
 

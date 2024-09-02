@@ -3,7 +3,10 @@ using JobPostLibrary.Repos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using System.Numerics;
 using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JobPostWebApi.Controllers
 {
@@ -130,12 +133,11 @@ namespace JobPostWebApi.Controllers
                 else
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errorContent);
-                    string errorMessage = errorObj.GetProperty("message").GetString();
+                var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errorContent);
+                string errorMessage = "The JobPost ID cannot be deleted because it is used in Apply Job. Please check and remove any related information before trying to delete it again";
                     return BadRequest(errorMessage);
-                }
+            }
         }
-
         [HttpDelete("job/{jobId}")]
         public async Task<ActionResult> DeleteJob(string jobId)
         {

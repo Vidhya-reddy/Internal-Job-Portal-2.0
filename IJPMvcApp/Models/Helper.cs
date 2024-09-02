@@ -86,5 +86,34 @@ namespace IJPMvcApp.Models
             level.Add(new SelectListItem { Text = "A", Value = "A" });
             return level;
         }
+        public enum SkillCategory
+        {
+            Database = 1,
+            Programming = 2,
+            Networking = 3,
+            Security = 4
+        }
+        public static async Task<List<SelectListItem>> GetSkillCategories()
+        {
+            return Enum.GetValues(typeof(SkillCategory))
+                .Cast<SkillCategory>()
+                .Select(e => new SelectListItem
+                {
+                    Value = ((int)e).ToString(), // Numeric value of the enum
+                    Text = e.ToString() // Name of the enum value
+                })
+                .ToList();
+        }
+
+
+        public static string GetSkillCategoryName(int skillCategoryValue)
+        {
+            if (Enum.IsDefined(typeof(SkillCategory), skillCategoryValue))
+            {
+                return ((SkillCategory)skillCategoryValue).ToString();
+            }
+            return "Unknown";
+        }
+
     }
 }

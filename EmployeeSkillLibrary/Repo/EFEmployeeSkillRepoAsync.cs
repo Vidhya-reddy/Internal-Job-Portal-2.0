@@ -33,7 +33,7 @@ namespace EmployeeSkillLibrary.Repo
             }
             catch (Exception ex)
             {
-                throw new EmployeeSkillException(ex.InnerException.Message);
+                throw new EmployeeSkillException("The Employee ID and Skill Id you entered are already in use. Please check the ID's and try again.");
             }
         }
 

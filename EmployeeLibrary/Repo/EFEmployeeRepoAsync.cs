@@ -21,7 +21,7 @@ namespace EmployeeLibrary.Repo
             }
             catch (Exception ex)
             {
-                throw new EmployeeException(ex.InnerException.Message);
+                throw new EmployeeException("The Employee ID you entered is already in use. Please check the ID and try again.");
             }
         }
 
@@ -34,7 +34,7 @@ namespace EmployeeLibrary.Repo
             }
             catch (Exception ex)
             {
-                throw new EmployeeException(ex.InnerException.Message);
+                throw new EmployeeException("The Job ID you entered is already in use. Please check the ID and try again.");
             }
         }
 
@@ -76,7 +76,7 @@ namespace EmployeeLibrary.Repo
             }
             catch (Exception ex)
             {
-                throw new EmployeeException(ex.Message);
+                throw new EmployeeException("The Employee ID cannot be deleted because it is used in other records. Please check and remove any related information before trying to delete it again");
             }
         }
 

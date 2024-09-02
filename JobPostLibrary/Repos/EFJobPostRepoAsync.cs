@@ -20,7 +20,7 @@ namespace JobPostLibrary.Repos
 
             }
             catch (Exception ex) {
-                throw new JobPostException(ex.InnerException.Message);
+                throw new JobPostException("The Job ID you have entered is already in use. Please check the ID and try again.");
             }
         }
         public async Task RemoveJobAsync(string jobId)
