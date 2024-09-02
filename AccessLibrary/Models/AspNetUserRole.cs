@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccessLibrary.Models
 {
-    public class AspNetUserRoles
+    public class AspNetUserRole
     {
         public string UserId { get; set; }
         public string RoleId { get; set; }
