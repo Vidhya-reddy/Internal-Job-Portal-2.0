@@ -15,7 +15,7 @@ namespace SkillLibrary.Repos
             Task<Skill> GetSkillAsync(string skillId);
             Task<List<Skill>> GetAllSkillDetailsAsync();
             Task<List<Skill>> GetSkillsByLevelAsync(string skillLevel);
-            Task<List<Skill>> GetSkillsByCategoryAsync(string category);
+            Task<List<Skill>> GetSkillsByCategoryAsync(int category);
 
     }
 }

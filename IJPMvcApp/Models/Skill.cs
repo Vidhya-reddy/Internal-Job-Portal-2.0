@@ -17,6 +17,6 @@ namespace IJPMvcApp.Models
         public string SkillLevel { get; set; } = null!;
         
         [Display(Name = "Category")]
-        public string SkillCategory { get; set; } = null!;
+        public int SkillCategory { get; set; }
     }
 }
