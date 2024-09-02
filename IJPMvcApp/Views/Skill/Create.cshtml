@@ -36,12 +36,8 @@
 
                 <div class="form-group">
                     <label asp-for="SkillCategory" class="control-label"></label>
-                    <select asp-for="SkillCategory" class="form-control">
+                    <select asp-for="SkillCategory" class="form-control" asp-items="ViewBag.SkillCategories">
                         <option value="">Select a category</option>
-                        <option value="1">1:Database</option>
-                        <option value="2">2:Programming</option>
-                        <option value="3">3:Networking</option>
-                        <option value="4">4:Security</option>
                     </select>
                     <span asp-validation-for="SkillCategory" class="text-danger"></span>
                 </div>
