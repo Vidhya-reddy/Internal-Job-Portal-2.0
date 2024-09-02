@@ -18,7 +18,7 @@ public  class JobPost
     [Display(Name = "Date Of Posting")]
     public DateOnly DateofPosting { get; set; }
 
-    [Display(Name = "Last Date")]
+    [Display(Name = "Last Date to Apply")]
     public DateOnly LastDatetoApply { get; set; }
 
     [Display(Name = "Vacancies")]
