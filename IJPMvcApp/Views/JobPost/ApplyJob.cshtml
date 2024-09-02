@@ -1,0 +1,49 @@
+﻿@model IJPMvcApp.Models.ApplyJob
+
+@{
+    ViewData["Title"] = "ApplyJob";
+}
+<div class="container">
+<h1>Apply Job</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ApplyJob">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PostId" class="control-label"></label>
+                <input asp-for="PostId" class="form-control" readonly/>
+                <span asp-validation-for="PostId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmpId" class="control-label"></label>
+                <select asp-for="EmpId" class="form-control">
+                    <option></option>
+                    @foreach (SelectListItem empIds in await Helper.GetEmployees())
+                    {
+                        <option value="@empIds.Value">@empIds.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="EmpId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AppliedDate" class="control-label"></label>
+                <input asp-for="AppliedDate" class="form-control" readonly/>
+                <span asp-validation-for="AppliedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationStatus" class="control-label"></label>
+                <input asp-for="ApplicationStatus" class="form-control" readonly/>
+                <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
+            </div>
+                <div class="form-group" style="margin-top: 15px;margin-bottom:15px" ;">
+                <input type="submit" value="Apply" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

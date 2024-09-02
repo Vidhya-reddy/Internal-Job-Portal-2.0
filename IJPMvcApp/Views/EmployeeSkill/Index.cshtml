@@ -1,0 +1,52 @@
+﻿@model IEnumerable<IJPMvcApp.Models.EmployeeSkill>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+<h1 style="text-align: center; font-weight:bold">Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Employee Skill</a>
+
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillExperience)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillExperience)
+            </td>
+            <td>
+                        @Html.ActionLink("Edit", "Edit", new { empId = item.EmpId, skillId = item.SkillId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Details", "Details", new { empId = item.EmpId, skillId = item.SkillId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("ByEmployeeId", "ByempId", new { empId = item.EmpId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("BySkillId", "ByskillId", new { skillId = item.SkillId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { empId = item.EmpId, skillId = item.SkillId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

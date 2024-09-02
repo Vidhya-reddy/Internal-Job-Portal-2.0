@@ -1,0 +1,55 @@
+﻿@model IEnumerable<IJPMvcApp.Models.Job>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+<h1 style="text-align: center; font-weight:bold">Index</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Job</a>
+
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+             <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                        @Html.ActionLink("Edit", "Edit", new { jobId = item.JobId }, new { @class = "btn btn-primary" }) 
+                        @Html.ActionLink("Details", "Details", new { jobId = item.JobId }, new { @class = "btn btn-primary" }) 
+                        @Html.ActionLink("Delete", "Delete", new { jobId = item.JobId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
