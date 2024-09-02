@@ -35,7 +35,10 @@ namespace IJPMvcApp.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            return View();
+            JobPost jobPost = new JobPost();
+            jobPost.DateofPosting = DateOnly.FromDateTime(DateTime.Now);
+            jobPost.LastDatetoApply = DateOnly.FromDateTime(DateTime.Now);
+            return View(jobPost);
         }
 
         [HttpPost]

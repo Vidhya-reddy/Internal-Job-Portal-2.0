@@ -83,7 +83,7 @@ namespace ApplyJobWebApi.Controllers
                 if (appliedJob.AppliedDate <= jobpost.LastDatetoApply)
                     await repo.AddApplyJobAsync(appliedJob);
                 else
-                    throw new ApplyJobException("Applications closed");
+                    throw new ApplyJobException("The application is no longer accepting submissions because the deadline has passed.");
                 return Created($"api/ApplyJob/{appliedJob.PostId}/{appliedJob.EmpId}", appliedJob);
             }
             catch (ApplyJobException ex)

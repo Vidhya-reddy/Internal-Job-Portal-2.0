@@ -34,7 +34,7 @@ public partial class SkillDBContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength();
             entity.Property(e => e.SkillCategory)
-                .HasMaxLength(30)
+               
                 .IsUnicode(false);
             entity.Property(e => e.SkillLevel)
                 .HasMaxLength(1)
