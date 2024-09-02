@@ -11,5 +11,5 @@ public partial class Skill
 
     public string SkillLevel { get; set; } = null!;
 
-    public string SkillCategory { get; set; } = null!;
+    public int SkillCategory { get; set; }
 }

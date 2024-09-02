@@ -42,7 +42,7 @@ namespace SkillLibrary.Repos
             }
         }
 
-        public async Task<List<Skill>> GetSkillsByCategoryAsync(string skillCategory)
+        public async Task<List<Skill>> GetSkillsByCategoryAsync(int skillCategory)
         {
            
             List<Skill> skills = await (from e in ctx.Skills where e.SkillCategory == skillCategory  select e).ToListAsync();

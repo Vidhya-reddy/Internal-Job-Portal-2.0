@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.SkillLevel)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SkillCategory)
+                @Helper.GetSkillCategoryName(item.SkillCategory)
             </td>
             <td>
                         @Html.ActionLink("Edit", "Edit", new { skillId = item.SkillId }, new { @class = "btn btn-primary" }) 

@@ -31,6 +31,7 @@ namespace IJPMvcApp.Controllers
        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Create()
         {
+            ViewBag.SkillCategories = await Helper.GetSkillCategories();
             return View();
         }
 
