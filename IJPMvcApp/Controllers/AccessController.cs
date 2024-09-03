@@ -89,19 +89,19 @@ namespace IJPMvcApp.Controllers
         [Route("Access/EditRole/{id}")]
         public async Task<ActionResult> EditRole(string id)
         {
-            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
-            return View(Role);
+            AspNetRole Role1 = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(Role1);
         }
 
         // POST: AccessController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Access/EditRole/{id}")]
-        public async Task<ActionResult> EditRole(string id, AspNetRole Role)
+        public async Task<ActionResult> EditRole(string id, string Role,AspNetRole role)
         {
             try
             {
-                await client.PutAsJsonAsync(id, Role);
+                await client.PutAsJsonAsync(id,role.Name);
                 return RedirectToAction(nameof(IndexRoles));
             }
             catch
