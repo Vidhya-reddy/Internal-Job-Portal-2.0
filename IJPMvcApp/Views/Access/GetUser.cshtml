@@ -1,10 +1,10 @@
-﻿@model IJPMvcApp.Models.AspNetRole
+﻿@model AccessLibrary.Models.AspNetRole
 
 @{
-    ViewData["Title"] = "RoleDetails";
+    ViewData["Title"] = "GetUser";
 }
-<div class="container">
-<h1>RoleDetails</h1>
+
+<h1>GetUser</h1>
 
 <div>
     <h4>AspNetRole</h4>
@@ -38,6 +38,5 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-        <a asp-action="Index" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px">Back to List</a>
-</div>
+    <a asp-action="Index">Back to List</a>
 </div>

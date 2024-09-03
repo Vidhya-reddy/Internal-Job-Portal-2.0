@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "EditRole";
 }
-
+<div class="container">
 <h1>EditRole</h1>
 
 <h4>AspNetRole</h4>
@@ -23,16 +23,6 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NormalizedName" class="control-label"></label>
-                <input asp-for="NormalizedName" class="form-control" />
-                <span asp-validation-for="NormalizedName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConcurrencyStamp" class="control-label"></label>
-                <input asp-for="ConcurrencyStamp" class="form-control" />
-                <span asp-validation-for="ConcurrencyStamp" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -40,9 +30,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+        <a asp-action="IndexRoles" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px" >Back to List</a>
 </div>
-
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

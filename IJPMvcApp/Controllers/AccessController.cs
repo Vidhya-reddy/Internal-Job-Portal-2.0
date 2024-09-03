@@ -23,6 +23,17 @@ namespace IJPMvcApp.Controllers
         }
 
         // GET: AccessController/Details/5
+        public async Task<ActionResult> GetUser(string id)
+        {
+            AspNetRole userRole = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(userRole);
+        }
+        public async Task<ActionResult> GetUserRole(string id,string role)
+        {
+            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>($"{id}/{role}");
+            return View(userRole);
+        }
+
         public async Task<ActionResult> UserDetails(string id)
         {
             AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id);
@@ -83,8 +94,8 @@ namespace IJPMvcApp.Controllers
         // GET: AccessController/Edit/5
         public async Task<ActionResult> EditRole(string id)
         {
-            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
-            return View(Role);
+            //AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View();
         }
 
         // POST: AccessController/Edit/5
