@@ -85,6 +85,32 @@ namespace AccessLibrary.Repos
             return users;
         }
 
+        public async Task<AspNetRole> GetRoleAsync(string roleId)
+        {
+            try
+            {
+                AspNetRole role = await(from j in ctx.AspNetRoles where j.Id == roleId select j).FirstAsync();
+                return role;
+            }
+            catch
+            {
+                throw new AccessException("No Such RoleId Found");
+            }
+        }
+
+        public async  Task<AspNetUserRole> GetUserRoleAsync(string id, string role)
+        {
+            try
+            {
+                AspNetUserRole Userrole = await(from j in ctx.AspNetUserRoles where j.UserId == id && j.RoleId == role  select j).FirstAsync();
+                return Userrole;
+            }
+            catch
+            {
+                throw new AccessException("No Such RoleId Found");
+            }
+        }
+
         public async Task updateRoleAsync(string id, string role)
         {             
              if (id != "1")
