@@ -24,9 +24,9 @@ namespace IJPMvcApp.Controllers
 
         // GET: AccessController/Details/5
 
-        public async Task<ActionResult> UserDetails(string id)
+        public async Task<ActionResult> UserDetails(string id, string role)
         {
-            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id);
+            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
             return View(userRole);
         }
         public async Task<ActionResult> RoleDetails(string id)
@@ -84,8 +84,8 @@ namespace IJPMvcApp.Controllers
         // GET: AccessController/Edit/5
         public async Task<ActionResult> EditRole(string id)
         {
-            //AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
-            return View();
+            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(Role);
         }
 
         // POST: AccessController/Edit/5
@@ -107,8 +107,8 @@ namespace IJPMvcApp.Controllers
         // GET: AccessController/Delete/5
         public async Task<ActionResult> DeleteUserRole(string id, string role)
         {
-           // AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
-            return View();
+             AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
+            return View(userRole);
         }
 
         // POST: AccessController/Delete/5
@@ -129,8 +129,8 @@ namespace IJPMvcApp.Controllers
 
         public async Task<ActionResult> DeleteRole(string id)
         {
-           // AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
-            return View();
+           AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(Role);
         }
 
         // POST: AccessController/Delete/5
