@@ -76,7 +76,7 @@ namespace IJPMvcApp.Models
             List<AspNetUser> aspNetUsers = await client.GetFromJsonAsync<List<AspNetUser>>("");
             foreach (AspNetUser user in aspNetUsers)
             {
-                users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
+                users.Add(new SelectListItem { Text = user.UserName, Value = user.Id +" "+ user.UserName });
             }
             return users;
         }
@@ -87,7 +87,7 @@ namespace IJPMvcApp.Models
             List<AspNetRole> aspNetroles = await client.GetFromJsonAsync<List<AspNetRole>>("");
             foreach (AspNetRole role in aspNetroles)
             {
-                roles.Add(new SelectListItem { Text = role.Name, Value = role.Id });
+                roles.Add(new SelectListItem { Text = role.Name, Value = role.Id + " " + role.Name });
             }
             return roles;
         }
