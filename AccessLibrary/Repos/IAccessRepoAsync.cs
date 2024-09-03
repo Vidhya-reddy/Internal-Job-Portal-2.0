@@ -13,6 +13,7 @@ namespace AccessLibrary.Repos
         Task addRoleAsync(AspNetRole role);
         Task updateRoleAsync(string id, AspNetRole role);
         Task deleteRoleAsync(string id);
+        Task<List<AspNetRole>> GetAllRolesAsync();  
         Task<List<AspNetUser>> GetAllUsers();   
 
         Task addUserRoleAsync(AspNetUserRole userRole);  
