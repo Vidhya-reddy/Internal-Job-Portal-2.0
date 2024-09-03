@@ -1,4 +1,5 @@
 ﻿using AccessLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,34 +12,78 @@ namespace AccessLibrary.Repos
     {
         AccessDBContext ctx = new AccessDBContext();
 
-        public Task addRole(string id, string role)
+        public async Task addRoleAsync(AspNetRole role)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task addUserRoleAsync(AspNetUserRole userRole)
-        {
-           await ctx.AspNetUserRoles.AddAsync(userRole);
-           await ctx.SaveChangesAsync();    
+            try
+            {
+                await ctx.AspNetRoles.AddAsync(role);
+                await ctx.SaveChangesAsync();
+            }
+            catch (Exception ex) { 
+                throw new AccessException("The role ID you have entered is already in use. Please check the ID and try again.");
+            }
            
         }
+        public async Task addUserRoleAsync(AspNetUserRole userRole)
+        {
+            try
+            {
+                await ctx.AspNetUserRoles.AddAsync(userRole);
+                await ctx.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new AccessException("The Role for this User is already in use. Please check the ID and try again.");
+            }
+        }
+        public async Task deleteRoleAsync(string id)
+        {
+            try
+            {
+                AspNetRole role = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
+                ctx.AspNetRoles.Remove(role);
+                await ctx.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new AccessException("The Role ID cannot be deleted because it is used in UserRole Table." +
+                    " Please check and remove any related information before trying to delete it again");
+            }
+        }
 
-        public Task deleteRole(string id)
+        public async Task deleteUserRoleAsync(string id, string role)
+        {
+            
+            try
+            {
+                AspNetUserRole userrole = await(from r in ctx.AspNetUserRoles where r.UserId == id & r.RoleId == role select r).FirstAsync();
+                ctx.AspNetUserRoles.Remove(userrole);
+                await ctx.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new AccessException(ex.InnerException.Message);
+            }
+        }
+
+        public async Task<List<AspNetUserRole>> GetAllUserRolesAsync()
+        {
+            List<AspNetUserRole> userroles = new List<AspNetUserRole>();    
+            userroles = await ctx.AspNetUserRoles.ToListAsync();
+            return userroles;
+        }
+
+        public Task<List<AspNetUser>> GetAllUsers()
         {
             throw new NotImplementedException();
         }
 
-        public Task deleteUserRoleAsync(AspNetUserRole userRole)
+        public Task updateRoleAsync(string id, string role)
         {
             throw new NotImplementedException();
         }
 
-        public Task updateRole(string id, string role)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task updateUserRoleAsync(AspNetUserRole userRole)
+        public Task updateRoleAsync(string id, AspNetRole role)
         {
             throw new NotImplementedException();
         }
