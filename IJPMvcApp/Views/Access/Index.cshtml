@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<AccessLibrary.Models.AspNetUserRole>
-
+<div class="container">
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -25,16 +25,17 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.User1.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RoleId)
             </td>
             <td>
-                    @Html.ActionLink("IndexRoles", "IndexRoles", new { id=item.RoleId }) |
-                    @Html.ActionLink("DeleteUserRole", "DeleteUserRole", new { id=item.UserId, role=item.RoleId })
+                @Html.ActionLink("IndexRoles", "IndexRoles", new { id = item.RoleId }) |
+                @Html.ActionLink("DeleteUserRole", "DeleteUserRole", new { id = item.UserId, role = item.RoleId })
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>

@@ -7,23 +7,18 @@ namespace IJPMvcApp.Controllers
 {
     public class AccessController : Controller
     {
-        static HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/AccessController") };
+        static HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/Access/") };
         // GET: AccessController
         public async  Task<ActionResult> Index()
         {
-            string token = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Authorization = new
-            System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             List<AspNetUserRole> userRoles = await client.GetFromJsonAsync<List<AspNetUserRole>>("");
-            return View();
+            return View(userRoles);
         }
         public async Task<ActionResult> IndexRoles()
         {
-            string token = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Authorization = new
-            System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            List<AspNetRole> userRoles = await client.GetFromJsonAsync<List<AspNetRole>>("");
-            return View();
+           
+            List<AspNetRole> Roles = await client.GetFromJsonAsync<List<AspNetRole>>("Roles");
+            return View(Roles);
         }
 
         // GET: AccessController/Details/5
