@@ -38,17 +38,17 @@ namespace AccessLibrary.Repos
         }
         public async Task deleteRoleAsync(string id)
         {
-            try
+            List<AspNetUserRole> userRoles = await(from e in ctx.AspNetUserRoles where e.RoleId == id  select e).ToListAsync();
+            if (userRoles.Count == 0)
             {
                 AspNetRole role = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
                 ctx.AspNetRoles.Remove(role);
                 await ctx.SaveChangesAsync();
             }
-            catch (Exception ex)
-            {
+            else
                 throw new AccessException("The Role ID cannot be deleted because it is used in UserRole Table." +
                     " Please check and remove any related information before trying to delete it again");
-            }
+            
         }
 
         public async Task deleteUserRoleAsync(string id, string role)

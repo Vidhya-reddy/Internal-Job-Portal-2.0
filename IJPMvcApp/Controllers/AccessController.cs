@@ -149,14 +149,16 @@ namespace IJPMvcApp.Controllers
         [Route("Access/DeleteRole/{id}")]
         public async Task<ActionResult> DeleteRole(string id, AspNetUserRole userRole)
         {
-            try
+            
+            
+               var response=await client.DeleteAsync("Role/" + id);
+            
+           if (response.IsSuccessStatusCode)
+                return RedirectToAction(nameof(Index));
+            else
             {
-                await client.DeleteAsync("Role/" + id);
-                return RedirectToAction(nameof(IndexRoles));
-            }
-            catch
-            {
-                return View();
+                var errMsg = await response.Content.ReadAsStringAsync();
+                throw new Exception(errMsg);
             }
         }
     }
