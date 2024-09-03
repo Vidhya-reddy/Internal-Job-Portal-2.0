@@ -136,7 +136,8 @@ namespace IJPMvcApp.Models
             Database = 1,
             Programming = 2,
             Networking = 3,
-            Security = 4
+            Security = 4,
+            Cloud=5
         }
        
         public static async Task<List<SelectListItem>> GetSkillCategories()

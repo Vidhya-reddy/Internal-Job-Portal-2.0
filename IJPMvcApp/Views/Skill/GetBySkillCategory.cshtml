@@ -34,11 +34,12 @@
                 @Html.DisplayFor(modelItem => item.SkillName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SkillLevel)
+                @Helper.GetSkillLevelName(item.SkillLevel)
+
             </td>
             <td>
-                        @Helper.GetSkillCategoryName(item.SkillCategory)
-        </td>
+               @Helper.GetSkillCategoryName(item.SkillCategory)
+            </td>
         </tr>
 }     
 
