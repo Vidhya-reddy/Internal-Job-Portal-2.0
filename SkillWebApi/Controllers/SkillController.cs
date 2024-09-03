@@ -141,7 +141,7 @@ namespace SkillWebApi.Controllers
 
 
         [HttpGet("BySkillLevel/{skillLevel}")]
-        public async Task<ActionResult> GetSkillsBySkillLevel(string skillLevel)
+        public async Task<ActionResult> GetSkillsBySkillLevel(char skillLevel)
         {
             try
             {

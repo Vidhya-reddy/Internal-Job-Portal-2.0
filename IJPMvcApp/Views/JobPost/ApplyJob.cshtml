@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label asp-for="EmpId" class="control-label"></label>
                 <select asp-for="EmpId" class="form-control">
-                    <option></option>
+                    <option value=""><--Select Employee Id--></option>
                     @foreach (SelectListItem empIds in await Helper.GetEmployees())
                     {
                         <option value="@empIds.Value">@empIds.Text</option>
