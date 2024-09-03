@@ -86,7 +86,7 @@ namespace AccessWebApi.Controllers
             }
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}/{role}")]
         public async Task<ActionResult> Delete(string id,string role)
          {
              try

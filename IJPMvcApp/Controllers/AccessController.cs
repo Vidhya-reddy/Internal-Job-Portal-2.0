@@ -105,20 +105,25 @@ namespace IJPMvcApp.Controllers
         }
 
         // GET: AccessController/Delete/5
+        [Route("Access/DeleteUserRole/{id}/{role}")]
         public async Task<ActionResult> DeleteUserRole(string id, string role)
         {
-             AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
+            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
             return View(userRole);
         }
 
         // POST: AccessController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Access/DeleteUserRole/{id}/{role}")]
         public async Task<ActionResult> DeleteUserRole(string id, string role, AspNetUserRole userRole)
         {
             try
             {
-                await client.DeleteAsync(""+id + "/" + role);
+                //string[] user = id.Split(' ');
+                //string[] role1 = role.Split(' ');
+              
+                await client.DeleteAsync("" + id + "/" + role);
                 return RedirectToAction(nameof(Index));
             }
             catch

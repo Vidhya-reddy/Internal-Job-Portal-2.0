@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<IJPMvcApp.Models.Skill>
 
 @{
-    ViewData["Title"] = "GetBySkillCategory";
+    ViewData["Title"] = "ByLevel";
 }
-<div class="container">
-<h1>Skills By Category</h1>
 
+<h1>ByLevel</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -34,16 +37,15 @@
                 @Html.DisplayFor(modelItem => item.SkillName)
             </td>
             <td>
-                @Helper.GetSkillLevelName(item.SkillLevel)
-
+                    @Helper.GetSkillLevelName(item.SkillLevel)
             </td>
             <td>
-               @Helper.GetSkillCategoryName(item.SkillCategory)
+                    @Helper.GetSkillCategoryName(item.SkillCategory)
             </td>
+            
         </tr>
-}     
-
+}
     </tbody>
+
 </table>
-    <a asp-action="Index" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px">Back to List</a>
-</div>
+<a asp-action="Index" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px">Back to List</a>
