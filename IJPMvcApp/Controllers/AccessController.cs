@@ -1,11 +1,13 @@
 ﻿
 using IJPMvcApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace IJPMvcApp.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AccessController : Controller
     {
         static HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/Access/") };
@@ -23,7 +25,7 @@ namespace IJPMvcApp.Controllers
         }
 
         // GET: AccessController/Details/5
-
+        
         public async Task<ActionResult> UserDetails(string id, string role)
         {
             AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
@@ -35,6 +37,7 @@ namespace IJPMvcApp.Controllers
             return View(Role);
         }
         // GET: AccessController/Create
+        
         public ActionResult CreateUserRole()
         {
             return View();
@@ -61,7 +64,7 @@ namespace IJPMvcApp.Controllers
                 return View();
             }
         }
-
+        [Route("Access/CreateRole/")]
         public ActionResult CreateRole()
         {
             return View();
@@ -72,7 +75,7 @@ namespace IJPMvcApp.Controllers
         {
             try
             {
-                await client.PostAsJsonAsync("", Role);
+                await client.PostAsJsonAsync("Role/", Role);
                 return RedirectToAction(nameof(IndexRoles));
             }
             catch
@@ -82,6 +85,8 @@ namespace IJPMvcApp.Controllers
         }
 
         // GET: AccessController/Edit/5
+        
+        [Route("Access/EditRole/{id}")]
         public async Task<ActionResult> EditRole(string id)
         {
             AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
@@ -91,6 +96,7 @@ namespace IJPMvcApp.Controllers
         // POST: AccessController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Access/EditRole/{id}")]
         public async Task<ActionResult> EditRole(string id, AspNetRole Role)
         {
             try
@@ -130,6 +136,7 @@ namespace IJPMvcApp.Controllers
             
         }
 
+        [Route("Access/DeleteRole/{id}")]
         public async Task<ActionResult> DeleteRole(string id)
         {
            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
@@ -139,11 +146,12 @@ namespace IJPMvcApp.Controllers
         // POST: AccessController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Access/DeleteRole/{id}")]
         public async Task<ActionResult> DeleteRole(string id, AspNetUserRole userRole)
         {
             try
             {
-                await client.DeleteAsync("" + id);
+                await client.DeleteAsync("Role/" + id);
                 return RedirectToAction(nameof(IndexRoles));
             }
             catch
