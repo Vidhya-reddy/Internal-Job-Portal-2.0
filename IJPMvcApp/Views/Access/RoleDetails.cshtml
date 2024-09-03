@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "RoleDetails";
 }
-
+<div class="container">
 <h1>RoleDetails</h1>
 
 <div>
@@ -38,5 +38,6 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+        <a asp-action="Index" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px">Back to List</a>
+</div>
 </div>

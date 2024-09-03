@@ -77,8 +77,8 @@ namespace IJPMvcApp.Controllers
         // GET: AccessController/Edit/5
         public async Task<ActionResult> EditRole(string id)
         {
-            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
-            return View(Role);
+            //AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View();
         }
 
         // POST: AccessController/Edit/5

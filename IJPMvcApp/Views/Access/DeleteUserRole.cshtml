@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "DeleteUserRole";
 }
-
+<div class="container">
 <h1>DeleteUserRole</h1>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -27,6 +27,7 @@
     
     <form asp-action="DeleteUserRole">
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+            <a asp-action="Index" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px" >Back to List</a>
     </form>
+</div>
 </div>
