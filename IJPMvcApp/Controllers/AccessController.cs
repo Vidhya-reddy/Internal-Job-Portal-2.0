@@ -64,7 +64,7 @@ namespace IJPMvcApp.Controllers
                 return View();
             }
         }
-        [Route("Access/CreateRole/")]
+       // [Route("Access/CreateRole/")]
         public ActionResult CreateRole()
         {
             return View();
@@ -75,7 +75,7 @@ namespace IJPMvcApp.Controllers
         {
             try
             {
-                await client.PostAsJsonAsync("Role/", Role);
+                await client.PostAsJsonAsync("Role", Role);
                 return RedirectToAction(nameof(IndexRoles));
             }
             catch
