@@ -68,6 +68,29 @@ namespace IJPMvcApp.Models
             }
             return postIds;
         }
+
+        public static async Task<List<SelectListItem>> GetUsers()
+        {
+            List<SelectListItem> users = new List<SelectListItem>();
+            HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/Access/Users/") };
+            List<AspNetUser> aspNetUsers = await client.GetFromJsonAsync<List<AspNetUser>>("");
+            foreach (AspNetUser user in aspNetUsers)
+            {
+                users.Add(new SelectListItem { Text = user.UserName, Value = user.Id });
+            }
+            return users;
+        }
+        public static async Task<List<SelectListItem>> GetRoles()
+        {
+            List<SelectListItem> roles = new List<SelectListItem>();
+            HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/Access/Roles") };
+            List<AspNetRole> aspNetroles = await client.GetFromJsonAsync<List<AspNetRole>>("");
+            foreach (AspNetRole role in aspNetroles)
+            {
+                roles.Add(new SelectListItem { Text = role.Name, Value = role.Id });
+            }
+            return roles;
+        }
         public static async Task<List<SelectListItem>> GetStatus()
         {
              List<SelectListItem> status = new List<SelectListItem>();
@@ -113,7 +136,8 @@ namespace IJPMvcApp.Models
             Database = 1,
             Programming = 2,
             Networking = 3,
-            Security = 4
+            Security = 4,
+            Cloud=5
         }
        
         public static async Task<List<SelectListItem>> GetSkillCategories()
@@ -137,6 +161,8 @@ namespace IJPMvcApp.Models
             }
             return "Unknown";
         }
+
+
 
     }
 }

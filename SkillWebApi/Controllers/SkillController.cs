@@ -133,7 +133,7 @@ namespace SkillWebApi.Controllers
                 {
                     var errContent = await response2.Content.ReadAsStringAsync();
                     var errorObj = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(errContent);
-                    errorMessage += "The Skill ID cannot be deleted because it is used in Apply Job Table. Please check and remove any related information before trying to delete it again";
+                    errorMessage += "The Skill ID cannot be deleted because it is used in JobSkill Table. Please check and remove any related information before trying to delete it again";
                 }
                 return BadRequest(errorMessage);
             }
