@@ -32,6 +32,8 @@ namespace IJPMvcApp.Controllers
         public async Task<ActionResult> Create()
         {
             ViewBag.SkillCategories = await Helper.GetSkillCategories();
+            ViewBag.SkillLevels = await Helper.GetSkillLevel();
+
             return View();
         }
 
@@ -62,6 +64,8 @@ namespace IJPMvcApp.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(string skillId)
         {
+            ViewBag.SkillCategories = await Helper.GetSkillCategories();
+            ViewBag.SkillLevels = await Helper.GetSkillLevel();
             Skill skill = await client.GetFromJsonAsync<Skill>("" + skillId);
             return View(skill);
         }

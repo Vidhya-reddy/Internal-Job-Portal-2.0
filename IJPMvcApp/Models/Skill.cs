@@ -14,7 +14,7 @@ namespace IJPMvcApp.Models
        
         [Display(Name = "Skill Level")]
         [Required(ErrorMessage = "Skill Level is required")]
-        public string SkillLevel { get; set; } = null!;
+        public char SkillLevel { get; set; }
         
         [Display(Name = "Category")]
         public int SkillCategory { get; set; }

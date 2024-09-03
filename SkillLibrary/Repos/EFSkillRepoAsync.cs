@@ -57,7 +57,7 @@ namespace SkillLibrary.Repos
 
         }
 
-        public async Task<List<Skill>> GetSkillsByLevelAsync(string skillLevel)
+        public async Task<List<Skill>> GetSkillsByLevelAsync(char skillLevel)
         {
             List<Skill> skills = await(from e in ctx.Skills where e.SkillLevel == skillLevel select e).ToListAsync();
             if (skills.Count > 0)
