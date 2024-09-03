@@ -14,7 +14,6 @@ namespace AccessLibrary.Repos
         Task deleteRole(string id);
 
         Task<List<AspNetUser>> GetAllUsers();
-        Task<List<AspNetUser>> GetAllUsers();
         Task addUserRoleAsync(AspNetUserRole userRole);  
         Task updateUserRoleAsync(AspNetUserRole userRole);
         Task deleteUserRoleAsync(AspNetUserRole userRole);

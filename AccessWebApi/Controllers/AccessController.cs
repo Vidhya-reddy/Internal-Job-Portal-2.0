@@ -40,11 +40,11 @@ namespace AccessWebApi.Controllers
             }
         }
         [HttpPost("{id}/{role}")]
-        public async Task<ActionResult> InsertRole(string id,string role)
+        public async Task<ActionResult> InsertRole(string id, string role)
         {
             try
             {
-                await repo.addRole(id,role);
+                await repo.addRole(id, role);
                 return Created($"api/Access/{id}/", role);
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@ namespace AccessWebApi.Controllers
         {
             try
             {
-                await repo.updateRole(id,role);
+                await repo.updateRole(id, role);
                 return Ok(role);
             }
             catch (Exception ex)
@@ -65,44 +65,44 @@ namespace AccessWebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut]
-        public async Task<ActionResult> UpdateUserRole(AspNetUserRole userRole)
-        {
-            try
-            {
-                await repo.updateUserRoleAsync(userRole);
-                return Ok(userRole);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        [HttpDelete]
-        public async Task<ActionResult> Delete(AspNetUserRole userRole)
-        {
-            try
-            {
-                await repo.deleteUserRoleAsync(userRole);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        [HttpPut("{id}")]
+         public async Task<ActionResult> UpdateUserRole(string id)
+         {
+             try
+             {
+                 await repo.updateUserRoleAsync(id);
+                 return Ok();
+             }
+             catch (Exception ex)
+             {
+                 return BadRequest(ex.Message);
+             }
+         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteRole(string id)
-        {
-            try
-            {
-                await repo.deleteRole(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        public async Task<ActionResult> Delete(string id)
+         {
+             try
+             {
+                 await repo.deleteUserRoleAsync(id);
+                 return Ok();
+             }
+             catch (Exception ex)
+             {
+                 return BadRequest(ex.Message);
+             }
+         }
+         [HttpDelete("{id}")]
+         public async Task<ActionResult> DeleteRole(string id)
+         {
+             try
+             {
+                 await repo.deleteRole(id);
+                 return Ok();
+             }
+             catch (Exception ex)
+             {
+                 return BadRequest(ex.Message);
+             }
+         }
     }
 }
