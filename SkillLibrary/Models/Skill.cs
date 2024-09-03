@@ -9,7 +9,7 @@ public partial class Skill
 
     public string SkillName { get; set; } = null!;
 
-    public string SkillLevel { get; set; } = null!;
+    public char SkillLevel { get; set; } 
 
     public int SkillCategory { get; set; }
 }

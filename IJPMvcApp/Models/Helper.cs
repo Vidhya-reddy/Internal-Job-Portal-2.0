@@ -77,15 +77,37 @@ namespace IJPMvcApp.Models
              status.Add(new SelectListItem { Text = "Rejected", Value = "Rejected" });
              return status;
         }
-        public static async Task<List<SelectListItem>> GetLevel()
+        public enum SkillLevel
         {
-            List<SelectListItem> level = new List<SelectListItem>();
+            Beginner= 'B',
+            Intermediate = 'I',
+            Advanced = 'A'
 
-            level.Add(new SelectListItem { Text = "B", Value = "B" });
-            level.Add(new SelectListItem { Text = "I", Value = "I" });
-            level.Add(new SelectListItem { Text = "A", Value = "A" });
-            return level;
         }
+        public static async Task<List<SelectListItem>> GetSkillLevel()
+        {
+            return Enum.GetValues(typeof(SkillLevel))
+                .Cast<SkillLevel>()
+                .Select(e => new SelectListItem
+                {
+                    Value = ((char)e).ToString(), // Convert enum to char and then to string
+                    Text = e.ToString()
+                })
+                .ToList();
+        }
+
+        public static string GetSkillLevelName(char skillLevelChar)
+        {
+            foreach (SkillLevel level in Enum.GetValues(typeof(SkillLevel)))
+            {
+                if ((char)level == skillLevelChar)
+                {
+                    return level.ToString();
+                }
+            }
+            return "Unknown";
+        }
+
         public enum SkillCategory
         {
             Database = 1,
@@ -93,14 +115,15 @@ namespace IJPMvcApp.Models
             Networking = 3,
             Security = 4
         }
+       
         public static async Task<List<SelectListItem>> GetSkillCategories()
         {
             return Enum.GetValues(typeof(SkillCategory))
                 .Cast<SkillCategory>()
                 .Select(e => new SelectListItem
                 {
-                    Value = ((int)e).ToString(), // Numeric value of the enum
-                    Text = e.ToString() // Name of the enum value
+                    Value = ((int)e).ToString(), 
+                    Text = e.ToString() 
                 })
                 .ToList();
         }
