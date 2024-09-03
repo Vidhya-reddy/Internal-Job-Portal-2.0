@@ -66,9 +66,10 @@ namespace AccessLibrary.Repos
             }
         }
 
-        public Task<List<AspNetRole>> GetAllRolesAsync()
+        public async Task<List<AspNetRole>> GetAllRolesAsync()
         {
-            throw new NotImplementedException();
+            List<AspNetRole> roles = await ctx.AspNetRoles.ToListAsync();
+            return roles;
         }
 
         public async Task<List<AspNetUserRole>> GetAllUserRolesAsync()
@@ -78,19 +79,30 @@ namespace AccessLibrary.Repos
             return userroles;
         }
 
-        public Task<List<AspNetUser>> GetAllUsers()
+        public async  Task<List<AspNetUser>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            List<AspNetUser> users = await ctx.AspNetUsers.ToListAsync();
+            return users;
         }
 
-        public Task updateRoleAsync(string id, string role)
+        public async Task updateRoleAsync(string id, string role)
         {
-            throw new NotImplementedException();
+           
+               
+                if (id != "1")
+                {
+                AspNetRole roles = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
+                roles.Name = role;
+                }
+               else
+                {
+                throw new AccessException("Cannot Update Admin Role");
+                }
+                
+            
+            
         }
 
-        public Task updateRoleAsync(string id, AspNetRole role)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
