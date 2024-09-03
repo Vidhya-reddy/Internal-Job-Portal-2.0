@@ -19,7 +19,7 @@ namespace SkillLibrary.Repos
             }
             catch (Exception ex)
             {
-                throw new SkillException("The Skill ID you have entered is already in use. Please check the ID and try again.");
+                throw new SkillException("Duplicate value entered.");
             }
         }
 
