@@ -91,6 +91,7 @@ namespace AccessLibrary.Repos
              {
                 AspNetRole roles = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
                 roles.Name = role;
+                await ctx.SaveChangesAsync();
              }
              else
              {
