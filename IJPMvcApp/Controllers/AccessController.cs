@@ -97,11 +97,11 @@ namespace IJPMvcApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Access/EditRole/{id}")]
-        public async Task<ActionResult> EditRole(string id, string Role,AspNetRole role)
+        public async Task<ActionResult> EditRole(string id,AspNetRole Role)
         {
             try
             {
-                await client.PutAsJsonAsync(id,role.Name);
+                await client.PutAsJsonAsync(id,Role);
                 return RedirectToAction(nameof(IndexRoles));
             }
             catch
