@@ -15,10 +15,10 @@ namespace AccessWebApi.Controllers
             repo = repository;
         }
         [HttpGet("{roleId}")]
-        public async Task<ActionResult> GetUser(string roleId)
+        public async Task<ActionResult> GetRole(string roleId)
         {
-            AspNetRole user = await repo.GetRoleAsync(roleId);
-            return Ok(user);
+            AspNetRole role = await repo.GetRoleAsync(roleId);
+            return Ok(role);
         }
         [HttpGet("{id}/{role}")]
         public async Task<ActionResult> GetUserRole(string id,string role)
