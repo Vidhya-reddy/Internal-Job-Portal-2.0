@@ -114,12 +114,12 @@ namespace IJPMvcApp.Controllers
             }
 
         }
-        public async Task<ActionResult> GetBySkillLevel(string skillLevel)
+        public async Task<ActionResult> ByLevel(string skillLevel)
         {
             List<Skill> skills = await client.GetFromJsonAsync<List<Skill>>("BySkillLevel/"+skillLevel);
             return View(skills);
         }
-        public async Task<ActionResult> GetBySkillCategory(string skillCategory)
+        public async Task<ActionResult> ByCategory(string skillCategory)
         {
             List<Skill> skills = await client.GetFromJsonAsync<List<Skill>>("BySkillCategory/"+skillCategory);
             return View(skills);
