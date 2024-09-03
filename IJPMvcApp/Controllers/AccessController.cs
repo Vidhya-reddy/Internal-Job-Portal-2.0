@@ -118,7 +118,10 @@ namespace IJPMvcApp.Controllers
         {
             try
             {
-                await client.DeleteAsync(""+id + "/" + role);
+                string[] user = id.Split(' ');
+                string[] role1 = role.Split(' ');
+              
+                await client.DeleteAsync("" + user[0] + "/" + role1[0]);
                 return RedirectToAction(nameof(Index));
             }
             catch
