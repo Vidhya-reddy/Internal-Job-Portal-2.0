@@ -14,50 +14,56 @@ namespace AccessWebApi.Controllers
         {
             repo = repository;
         }
-        [HttpGet]
+        [HttpGet("Users")]
         public async Task<ActionResult> GetAllUsers()
         {
             List<AspNetUser> users = await repo.GetAllUsers();
             return Ok(users);
         }
+        [HttpGet("Roles")]
+        public async Task<ActionResult> GetAllRoles()
+        {
+            List<AspNetRole> users = await repo.GetAllRolesAsync();
+            return Ok(users);
+        }
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            List<AspNetUser> users = await repo.GetAllUsersRoles();
-            return Ok(users);
+            List<AspNetUserRole> userRoles = await repo.GetAllUserRolesAsync();
+            return Ok(userRoles);
         }
         [HttpPost]
-        public async Task<ActionResult> Insert(AspNetUserRole userRoles)
+        public async Task<ActionResult> Insert(AspNetUserRole userRole)
         {
             try
             {
-                await repo.addUserRoleAsync(userRoles);
-                return Created($"api/ApplyJob/{userRoles.UserId}/{userRoles.RoleId}/", userRoles);
+                await repo.addUserRoleAsync(userRole);
+                return Created($"api/Access/{userRole.UserId}/{userRole.RoleId}/", userRole);
             }
             catch (Exception ex)
             {
                 return BadRequest(new { Message = ex.Message });
             }
         }
-        [HttpPost("{id}/{role}")]
-        public async Task<ActionResult> InsertRole(string id, string role)
+        [HttpPost("Role")]
+        public async Task<ActionResult> InsertRole(AspNetRole role)
         {
             try
             {
-                await repo.addRole(id, role);
-                return Created($"api/Access/{id}/", role);
+                await repo.addRoleAsync(role);
+                return Created($"api/Access/", role);
             }
             catch (Exception ex)
             {
                 return BadRequest(new { Message = ex.Message });
             }
         }
-        [HttpPut("{id}/{role}")]
-        public async Task<ActionResult> Update(string id, string role)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(string id,string role)
         {
             try
             {
-                await repo.updateRole(id, role);
+                await repo.updateRoleAsync(id, role);
                 return Ok(role);
             }
             catch (Exception ex)
@@ -65,25 +71,13 @@ namespace AccessWebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("{id}")]
-         public async Task<ActionResult> UpdateUserRole(string id)
-         {
-             try
-             {
-                 await repo.updateUserRoleAsync(id);
-                 return Ok();
-             }
-             catch (Exception ex)
-             {
-                 return BadRequest(ex.Message);
-             }
-         }
+        
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(string id,string role)
          {
              try
              {
-                 await repo.deleteUserRoleAsync(id);
+                 await repo.deleteUserRoleAsync(id,role);
                  return Ok();
              }
              catch (Exception ex)
@@ -91,12 +85,12 @@ namespace AccessWebApi.Controllers
                  return BadRequest(ex.Message);
              }
          }
-         [HttpDelete("{id}")]
+         [HttpDelete("Role/{id}")]
          public async Task<ActionResult> DeleteRole(string id)
          {
              try
              {
-                 await repo.deleteRole(id);
+                 await repo.deleteRoleAsync(id);
                  return Ok();
              }
              catch (Exception ex)
