@@ -55,6 +55,8 @@ public partial class AccessDBContext : DbContext
         modelBuilder.Entity<AspNetUserRole>(entity =>
         {
             entity.HasKey(e => new { e.UserId, e.RoleId });
+            entity.Property(e => e.RoleName).HasMaxLength(100);
+            entity.Property(e => e.UserName).HasMaxLength(100);
 
             entity.ToTable("AspNetUserRoles");
             entity.HasIndex(e => e.RoleId, "IX_AspNetUserRoles_RoleId");

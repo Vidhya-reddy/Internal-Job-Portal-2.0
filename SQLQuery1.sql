@@ -1,0 +1,1 @@
+﻿alter table AspNetUserRoles add  RoleName varchar(100);

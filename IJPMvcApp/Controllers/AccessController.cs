@@ -2,7 +2,7 @@
 using IJPMvcApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+
 
 namespace IJPMvcApp.Controllers
 {
@@ -47,6 +47,12 @@ namespace IJPMvcApp.Controllers
         {
             try
             {
+                string[] user = userRole.UserId.Split(' ');
+                string[] role = userRole.RoleId.Split(' ');
+                userRole.UserId = user[0];
+                userRole.RoleId = role[0];
+                userRole.RoleName = role[1];
+                userRole.UserName = user[1];
                 await client.PostAsJsonAsync("", userRole);
                 return RedirectToAction(nameof(Index));
             }
