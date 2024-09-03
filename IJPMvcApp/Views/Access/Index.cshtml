@@ -8,6 +8,7 @@
 
 <p>
         <a asp-action="CreateUserRole" class="btn btn-primary">Create New</a>
+        <a asp-action="IndexRoles" class="btn btn-primary">Roles</a>
 </p>
 <table class="table table-striped">
     <thead>
@@ -31,9 +32,8 @@
                 @Html.DisplayFor(modelItem => item.RoleName)
             </td>
             <td>
-                @Html.ActionLink("IndexRoles", "IndexRoles", new { id = item.RoleId }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Details", "UserDetails", new { id = item.UserId, role = item.RoleId }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("DeleteUserRole", "DeleteUserRole", new { id = item.UserId, role = item.RoleId }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("Details", "UserDetails", new { id = item.UserId, role = item.RoleId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("DeleteUserRole", "DeleteUserRole", new { id = item.UserId, role = item.RoleId }, new { @class = "btn btn-primary" }) 
             </td>
         </tr>
 }
