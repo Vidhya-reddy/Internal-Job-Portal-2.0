@@ -65,7 +65,7 @@ namespace IJPMvcApp.Controllers
                 return View();
             }
         }
-        [Route("Access/CreateRole/")]
+       // [Route("Access/CreateRole/")]
         public ActionResult CreateRole()
         {
             return View();
