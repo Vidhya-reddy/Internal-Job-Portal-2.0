@@ -24,9 +24,9 @@ namespace IJPMvcApp.Controllers
 
         // GET: AccessController/Details/5
 
-        public async Task<ActionResult> UserDetails(string id)
+        public async Task<ActionResult> UserDetails(string id, string role)
         {
-            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id);
+            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
             return View(userRole);
         }
         public async Task<ActionResult> RoleDetails(string id)
