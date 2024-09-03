@@ -148,9 +148,7 @@ namespace IJPMvcApp.Controllers
         [ValidateAntiForgeryToken]
         [Route("Access/DeleteRole/{id}")]
         public async Task<ActionResult> DeleteRole(string id, AspNetUserRole userRole)
-        {
-            
-            
+        {   
                var response=await client.DeleteAsync("Role/" + id);
             
            if (response.IsSuccessStatusCode)
