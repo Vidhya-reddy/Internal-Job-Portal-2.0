@@ -1,5 +1,5 @@
-﻿@model IEnumerable<AccessLibrary.Models.AspNetUserRole>
-
+﻿@model IEnumerable<IJPMvcApp.Models.AspNetUserRole>
+<div class="container">
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,9 +7,9 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+        <a asp-action="CreateUserRole" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -31,10 +31,14 @@
                 @Html.DisplayFor(modelItem => item.RoleId)
             </td>
             <td>
-                    @Html.ActionLink("IndexRoles", "IndexRoles", new { id=item.RoleId }) |
-                    @Html.ActionLink("DeleteUserRole", "DeleteUserRole", new { id=item.UserId, role=item.RoleId })
+                @Html.ActionLink("IndexRoles", "IndexRoles", new { id = item.RoleId }, new { @class = "btn btn-primary" }) 
+                @Html.ActionLink("DeleteUserRole", "DeleteUserRole", new { id = item.UserId, role = item.RoleId }, new { @class = "btn btn-primary" }) 
             </td>
         </tr>
 }
     </tbody>
 </table>
+    <div>
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary" style="margin-top:15px; margin-bottom:15px;">Back to List</a>
+    </div>
+</div>

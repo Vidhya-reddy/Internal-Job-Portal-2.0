@@ -90,6 +90,7 @@
       "UpstreamPathTemplate": "/AuthSvc/{something}"
     }
   ],
+
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5003"
   }
