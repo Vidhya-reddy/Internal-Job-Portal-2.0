@@ -1,4 +1,5 @@
 ﻿
+using Azure;
 using IJPMvcApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -73,14 +74,13 @@ namespace IJPMvcApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateRole(AspNetRole Role)
         {
-            try
+             var response = await client.PostAsJsonAsync("Role/", Role);
+            if (response.IsSuccessStatusCode)
+                return RedirectToAction(nameof(Index));
+            else
             {
-                await client.PostAsJsonAsync("Role/", Role);
-                return RedirectToAction(nameof(IndexRoles));
-            }
-            catch
-            {
-                return View();
+                var errMsg = await response.Content.ReadAsStringAsync();
+                throw new Exception(errMsg);
             }
         }
 
