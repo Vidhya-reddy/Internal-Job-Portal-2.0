@@ -86,23 +86,16 @@ namespace AccessLibrary.Repos
         }
 
         public async Task updateRoleAsync(string id, string role)
-        {
-           
-               
-                if (id != "1")
-                {
+        {             
+             if (id != "1")
+             {
                 AspNetRole roles = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
                 roles.Name = role;
-                }
-               else
-                {
+             }
+             else
+             {
                 throw new AccessException("Cannot Update Admin Role");
-                }
-                
-            
-            
-        }
-
-        
+             }                           
+        }      
     }
 }
