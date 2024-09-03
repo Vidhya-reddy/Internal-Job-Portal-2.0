@@ -111,12 +111,12 @@ namespace AccessLibrary.Repos
             }
         }
 
-        public async Task updateRoleAsync(string id, string role)
+        public async Task updateRoleAsync(string id, AspNetRole role)
         {             
              if (id != "1")
              {
                 AspNetRole roles = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
-                roles.Name = role;
+                roles.Name = role.Name;
                 await ctx.SaveChangesAsync();
              }
              else
