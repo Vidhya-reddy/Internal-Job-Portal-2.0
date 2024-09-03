@@ -1,9 +1,9 @@
-﻿@model AccessLibrary.Models.AspNetUserRole
+﻿@model IJPMvcApp.Models.AspNetUserRole
 
 @{
     ViewData["Title"] = "CreateUserRole";
 }
-
+<div class="container">
 <h1>CreateUserRole</h1>
 
 <h4>AspNetUserRole</h4>
@@ -32,7 +32,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
