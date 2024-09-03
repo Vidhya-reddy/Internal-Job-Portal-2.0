@@ -72,8 +72,8 @@ namespace AccessWebApi.Controllers
                 return BadRequest(new { Message = ex.Message });
             }
         }
-        [HttpPut("{id}/{role}")]
-        public async Task<ActionResult> Update(string id,string role)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(string id,AspNetRole role)
         {
             try
             {
