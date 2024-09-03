@@ -22,17 +22,21 @@ namespace IJPMvcApp.Controllers
             string token = HttpContext.Session.GetString("token");
             client.DefaultRequestHeaders.Authorization = new
             System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            List<AspNetUserRole> userRoles = await client.GetFromJsonAsync<List<AspNetUserRole>>("");
+            List<AspNetRole> userRoles = await client.GetFromJsonAsync<List<AspNetRole>>("");
             return View();
         }
 
         // GET: AccessController/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> UserDetails(string id)
         {
             AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id);
             return View(userRole);
         }
-
+        public async Task<ActionResult> RoleDetails(string id)
+        {
+            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(Role);
+        }
         // GET: AccessController/Create
         public ActionResult Create()
         {
@@ -42,7 +46,7 @@ namespace IJPMvcApp.Controllers
         // POST: AccessController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateRole(AspNetUserRole userRole)
+        public async Task<ActionResult> CreateUserRole(AspNetUserRole userRole)
         {
             try
             {
@@ -54,23 +58,35 @@ namespace IJPMvcApp.Controllers
                 return View();
             }
         }
+        public async Task<ActionResult> CreateRole(AspNetRole Role)
+        {
+            try
+            {
+                await client.PostAsJsonAsync("", Role);
+                return RedirectToAction(nameof(IndexRoles));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: AccessController/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> EditRole(string id)
         {
-            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id);
-            return View(userRole);
+            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(Role);
         }
 
         // POST: AccessController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, AspNetUserRole userRole)
+        public async Task<ActionResult> EditRole(string id, AspNetRole Role)
         {
             try
             {
-                await client.PutAsJsonAsync(id, userRole);
-                return RedirectToAction(nameof(Index));
+                await client.PutAsJsonAsync(id, Role);
+                return RedirectToAction(nameof(IndexRoles));
             }
             catch
             {
@@ -79,21 +95,43 @@ namespace IJPMvcApp.Controllers
         }
 
         // GET: AccessController/Delete/5
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> DeleteUserRole(string id, string role)
         {
-            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id);
+            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
             return View(userRole);
         }
 
         // POST: AccessController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(string id, AspNetUserRole userRole)
+        public async Task<ActionResult> DeleteUserRole(string id, string role, AspNetUserRole userRole)
         {
             try
             {
-                await client.DeleteAsync(""+id);
+                await client.DeleteAsync(""+id + "/" + role);
                 return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> DeleteRole(string id)
+        {
+            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View(Role);
+        }
+
+        // POST: AccessController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteRole(string id, AspNetUserRole userRole)
+        {
+            try
+            {
+                await client.DeleteAsync("" + id);
+                return RedirectToAction(nameof(IndexRoles));
             }
             catch
             {
