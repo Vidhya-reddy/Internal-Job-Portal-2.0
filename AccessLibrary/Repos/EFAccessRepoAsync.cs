@@ -53,7 +53,7 @@ namespace AccessLibrary.Repos
 
         public async Task deleteUserRoleAsync(string id, string role)
         {
-            if (role != "Admin")
+            if (role != "1")
             {
                 AspNetUserRole userrole = await (from r in ctx.AspNetUserRoles where r.UserId == id & r.RoleId == role select r).FirstAsync();
                 ctx.AspNetUserRoles.Remove(userrole);
