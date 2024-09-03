@@ -53,17 +53,17 @@ namespace AccessLibrary.Repos
 
         public async Task deleteUserRoleAsync(string id, string role)
         {
-            
-            try
+            if (role != "Admin")
             {
-                AspNetUserRole userrole = await(from r in ctx.AspNetUserRoles where r.UserId == id & r.RoleId == role select r).FirstAsync();
+                AspNetUserRole userrole = await (from r in ctx.AspNetUserRoles where r.UserId == id & r.RoleId == role select r).FirstAsync();
                 ctx.AspNetUserRoles.Remove(userrole);
-                await ctx.SaveChangesAsync();
+                ctx.SaveChangesAsync();
             }
-            catch (Exception ex)
+            else
             {
-                throw new AccessException(ex.InnerException.Message);
+                throw new AccessException("You cannot delete the Admin");
             }
+            
         }
 
         public Task<List<AspNetRole>> GetAllRolesAsync()
