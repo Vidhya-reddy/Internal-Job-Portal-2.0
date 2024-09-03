@@ -48,7 +48,7 @@
                         @Html.ActionLink("Details", "Details", new { postId = item.PostId, empId = item.EmpId }, new { @class = "btn btn-primary" }) 
                         @Html.ActionLink("By PostId", "ByPostId", new { postId = item.PostId, }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("By EmpId", "ByEmpId", new { empId = item.EmpId }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Delete", "Delete", new { postId = item.PostId, empId = item.EmpId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { postId = item.PostId, empId = item.EmpId }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }
