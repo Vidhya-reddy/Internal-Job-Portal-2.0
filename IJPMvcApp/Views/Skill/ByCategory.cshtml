@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<IJPMvcApp.Models.Skill>
-
+<div class="container">
 @{
     ViewData["Title"] = "ByCategory";
 }
 
 <h1>ByCategory</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -48,5 +45,7 @@
     </tbody>
 
 </table>
+
 <a asp-action="Index" class="btn btn-primary" style="margin-top: 15px;margin-bottom:15px">Back to List</a>
+</div>
 
