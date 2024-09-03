@@ -9,14 +9,13 @@ namespace AccessLibrary.Repos
 {
     public interface IAccessRepoAsync
     {
-        Task addRole(string id, string role);
-        Task updateRole(string id, string role);
-        Task deleteRole(string id);
-        Task<List<AspNetUser>> GetAllUsers();
-        Task<List<AspNetUserRole>> GetAllUserRoles();
+        Task<List<AspNetUserRole>> GetAllUserRolesAsync();
+        Task addRoleAsync(AspNetRole role);
+        Task updateRoleAsync(string id, AspNetRole role);
+        Task deleteRoleAsync(string id);
+        Task<List<AspNetUser>> GetAllUsers();   
 
         Task addUserRoleAsync(AspNetUserRole userRole);  
-        Task updateUserRoleAsync(AspNetUserRole userRole);
-        Task deleteUserRoleAsync(AspNetUserRole userRole);
+        Task deleteUserRoleAsync(string id, string role);
     }
 }
