@@ -53,22 +53,23 @@ namespace AccessLibrary.Repos
 
         public async Task deleteUserRoleAsync(string id, string role)
         {
-            
-            try
+            if (role != "Admin")
             {
-                AspNetUserRole userrole = await(from r in ctx.AspNetUserRoles where r.UserId == id & r.RoleId == role select r).FirstAsync();
+                AspNetUserRole userrole = await (from r in ctx.AspNetUserRoles where r.UserId == id & r.RoleId == role select r).FirstAsync();
                 ctx.AspNetUserRoles.Remove(userrole);
-                await ctx.SaveChangesAsync();
+                ctx.SaveChangesAsync();
             }
-            catch (Exception ex)
+            else
             {
-                throw new AccessException(ex.InnerException.Message);
+                throw new AccessException("You cannot delete the Admin");
             }
+            
         }
 
-        public Task<List<AspNetRole>> GetAllRolesAsync()
+        public async Task<List<AspNetRole>> GetAllRolesAsync()
         {
-            throw new NotImplementedException();
+            List<AspNetRole> roles = await ctx.AspNetRoles.ToListAsync();
+            return roles;
         }
 
         public async Task<List<AspNetUserRole>> GetAllUserRolesAsync()
@@ -78,19 +79,24 @@ namespace AccessLibrary.Repos
             return userroles;
         }
 
-        public Task<List<AspNetUser>> GetAllUsers()
+        public async  Task<List<AspNetUser>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            List<AspNetUser> users = await ctx.AspNetUsers.ToListAsync();
+            return users;
         }
 
-        public Task updateRoleAsync(string id, string role)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task updateRoleAsync(string id, AspNetRole role)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task updateRoleAsync(string id, string role)
+        {             
+             if (id != "1")
+             {
+                AspNetRole roles = await (from r in ctx.AspNetRoles where r.Id == id select r).FirstAsync();
+                roles.Name = role;
+                await ctx.SaveChangesAsync();
+             }
+             else
+             {
+                throw new AccessException("Cannot Update Admin Role");
+             }                           
+        }      
     }
 }
