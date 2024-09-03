@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AccessLibrary.Models;
+namespace IJPMvcApp.Models;
 
 public partial class AspNetRole
 {
