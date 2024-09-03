@@ -66,6 +66,11 @@ namespace AccessLibrary.Repos
             }
         }
 
+        public Task<List<AspNetRole>> GetAllRolesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<AspNetUserRole>> GetAllUserRolesAsync()
         {
             List<AspNetUserRole> userroles = new List<AspNetUserRole>();    
