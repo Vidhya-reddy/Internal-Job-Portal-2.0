@@ -32,22 +32,23 @@
             max-width:6%;
             height:auto;
         }
+       
         
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
                     <img src="https://cdn.prod.website-files.com/63b435b50cf3c54c440003c3/64b7c31c18bead3d787f90c0_Group%20(35).webp" class="allcloud">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @if (User.Identity.IsAuthenticated)
-                {
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
@@ -72,14 +73,15 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ApplyJob" asp-action="Index">Applications</a>
                             </li>
+                            }
                         </ul>
-                        <partial name="_LoginPartial" />
+                    <partial name="_LoginPartial" style="color:aliceblue;" />
                     </div>
-                }
             </div>
         </nav>
+        
     </header>
-    <div class="container1" >
+    <div class="container1" id="login" >
         <main role="main" class="pb-3" >
             @RenderBody()
         </main>
