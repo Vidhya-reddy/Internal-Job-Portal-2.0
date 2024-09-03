@@ -1,4 +1,5 @@
-﻿using AccessLibrary.Models;
+﻿
+using IJPMvcApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
@@ -7,23 +8,18 @@ namespace IJPMvcApp.Controllers
 {
     public class AccessController : Controller
     {
-        static HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/AccessController") };
+        static HttpClient client = new HttpClient() { BaseAddress = new Uri("http://localhost:5280/api/Access/") };
         // GET: AccessController
         public async  Task<ActionResult> Index()
         {
-            string token = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Authorization = new
-            System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             List<AspNetUserRole> userRoles = await client.GetFromJsonAsync<List<AspNetUserRole>>("");
-            return View();
+            return View(userRoles);
         }
         public async Task<ActionResult> IndexRoles()
         {
-            string token = HttpContext.Session.GetString("token");
-            client.DefaultRequestHeaders.Authorization = new
-            System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            List<AspNetRole> userRoles = await client.GetFromJsonAsync<List<AspNetRole>>("");
-            return View();
+           
+            List<AspNetRole> Roles = await client.GetFromJsonAsync<List<AspNetRole>>("Roles");
+            return View(Roles);
         }
 
         // GET: AccessController/Details/5
@@ -49,7 +45,7 @@ namespace IJPMvcApp.Controllers
             return View(Role);
         }
         // GET: AccessController/Create
-        public ActionResult Create()
+        public ActionResult CreateUserRole()
         {
             return View();
         }
@@ -69,6 +65,13 @@ namespace IJPMvcApp.Controllers
                 return View();
             }
         }
+
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateRole(AspNetRole Role)
         {
             try
@@ -108,8 +111,8 @@ namespace IJPMvcApp.Controllers
         // GET: AccessController/Delete/5
         public async Task<ActionResult> DeleteUserRole(string id, string role)
         {
-            AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
-            return View(userRole);
+           // AspNetUserRole userRole = await client.GetFromJsonAsync<AspNetUserRole>("" + id +"/"+role);
+            return View();
         }
 
         // POST: AccessController/Delete/5
@@ -130,8 +133,8 @@ namespace IJPMvcApp.Controllers
 
         public async Task<ActionResult> DeleteRole(string id)
         {
-            AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
-            return View(Role);
+           // AspNetRole Role = await client.GetFromJsonAsync<AspNetRole>("" + id);
+            return View();
         }
 
         // POST: AccessController/Delete/5

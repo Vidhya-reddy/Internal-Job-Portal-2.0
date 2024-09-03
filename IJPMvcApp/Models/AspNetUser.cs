@@ -1,10 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
-namespace AccessLibrary.Models;
+namespace IJPMvcApp.Models;
 
-public partial class AspNetUser
-{
+    public class AspNetUser
+    {
     public string Id { get; set; } = null!;
 
     public string? UserName { get; set; }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AccessLibrary.Models
+namespace IJPMvcApp.Models
 {
     public class AspNetUserRole
     {
