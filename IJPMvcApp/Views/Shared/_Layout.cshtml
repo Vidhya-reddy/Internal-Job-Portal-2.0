@@ -73,9 +73,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ApplyJob" asp-action="Index">Applications</a>
                             </li>
+                            @if (User.Claims.ToArray()[4].Value=="Admin")
+                            {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Access" asp-action="Index">Access</a>
                             </li>
+                            }
                             }
                         </ul>
                     <partial name="_LoginPartial" style="color:aliceblue;" />
