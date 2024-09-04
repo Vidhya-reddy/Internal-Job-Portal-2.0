@@ -53,10 +53,11 @@ namespace IJPMvcApp.Controllers
             {
                 string[] user = userRole.UserId.Split(' ');
                 string[] role = userRole.RoleId.Split(' ');
+                string[] username = user[1].Split("@");
                 userRole.UserId = user[0];
                 userRole.RoleId = role[0];
                 userRole.RoleName = role[1];
-                userRole.UserName = user[1];
+                userRole.UserName = username[0];
                 await client.PostAsJsonAsync("", userRole);
                 return RedirectToAction(nameof(Index));
             }
