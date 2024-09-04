@@ -56,7 +56,7 @@ namespace AccessWebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Message = ex.Message });
+                return BadRequest(ex.Message);
             }
         }
         [HttpPost("Role")]
@@ -69,7 +69,7 @@ namespace AccessWebApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { Message = ex.Message });
+                return BadRequest( ex.Message );
             }
         }
         [HttpPut("{id}")]

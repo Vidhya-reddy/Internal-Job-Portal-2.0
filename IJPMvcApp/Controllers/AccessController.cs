@@ -49,8 +49,6 @@ namespace IJPMvcApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateUserRole(AspNetUserRole userRole)
         {
-            try
-            {
                 string[] user = userRole.UserId.Split(' ');
                 string[] role = userRole.RoleId.Split(' ');
                 string[] username = user[1].Split("@");
@@ -58,13 +56,16 @@ namespace IJPMvcApp.Controllers
                 userRole.RoleId = role[0];
                 userRole.RoleName = role[1];
                 userRole.UserName = username[0];
-                await client.PostAsJsonAsync("", userRole);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+               var response= await client.PostAsJsonAsync("", userRole);
+            if (response.IsSuccessStatusCode)
+                return RedirectToAction(nameof(IndexRoles));
+            else
             {
-                return View();
+                var errMsg = await response.Content.ReadAsStringAsync();
+                throw new Exception(errMsg);
             }
+
+            
         }
        // [Route("Access/CreateRole/")]
         public ActionResult CreateRole()
