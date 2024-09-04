@@ -58,7 +58,7 @@ namespace IJPMvcApp.Controllers
                 userRole.UserName = username[0];
                var response= await client.PostAsJsonAsync("", userRole);
             if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(IndexRoles));
+                return RedirectToAction(nameof(Index));
             else
             {
                 var errMsg = await response.Content.ReadAsStringAsync();
