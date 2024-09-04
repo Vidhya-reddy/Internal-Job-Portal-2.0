@@ -152,7 +152,7 @@ namespace IJPMvcApp.Controllers
                var response=await client.DeleteAsync("Role/" + id);
             
            if (response.IsSuccessStatusCode)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexRoles));
             else
             {
                 var errMsg = await response.Content.ReadAsStringAsync();
