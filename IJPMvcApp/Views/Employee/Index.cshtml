@@ -4,6 +4,12 @@
     ViewData["Title"] = "Index";
 }
 <div class="container">
+    <style>
+        .btn-danger-margin {
+            margin-top: 10px;
+        }
+
+    </style>
 <h1 style="text-align: center; font-weight:bold">Index</h1>
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New Employee</a>
@@ -58,8 +64,8 @@
             <td>
                         @Html.ActionLink("Edit", "Edit", new { empId = item.EmpId }, new { @class = "btn btn-primary" }) 
                         @Html.ActionLink("Details", "Details", new { empId = item.EmpId }, new { @class = "btn btn-primary" }) 
-                        @Html.ActionLink("EmployeesByjobId", "ByjobId", new { jobId = item.JobId }, new { @class = "btn btn-primary" }) 
-                        @Html.ActionLink("Delete", "Delete", new { empId = item.EmpId }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("EmployeesByjobId", "ByjobId", new { jobId = item.JobId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { empId = item.EmpId }, new { @class = "btn btn-danger btn-danger-margin" })
             </td>
         </tr>
 }
